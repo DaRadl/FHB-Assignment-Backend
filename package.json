@@ -11,8 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "chai-json-schema": "^1.5.1",
     "express": "^4.17.3",
-    "rewire": "^6.0.0"
+    "request": "^2.88.2",
+    "rewire": "^6.0.0",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "mocha": "^10.2.0",
