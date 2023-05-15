@@ -1,25 +1,35 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Generated schema for Root",
-  "type": "object",
-  "properties": {
-    "userId": {
-      "type": "number"
-    },
-    "id": {
-      "type": "number"
-    },
-    "title": {
-      "type": "string"
-    },
-    "completed": {
-      "type": "boolean"
-    }
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/NotesSchemaV1"
   },
-  "required": [
-    "userId",
-    "id",
-    "title",
-    "completed"
-  ]
+  "definitions": {
+    "NotesSchemaV1": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "important": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "content",
+        "date",
+        "id",
+        "important"
+      ],
+      "title": "NotesSchemaV1"
+    }
+  }
 }

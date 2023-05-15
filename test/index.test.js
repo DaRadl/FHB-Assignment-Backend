@@ -7,6 +7,8 @@ const app = rewire('../src/index.js');
 // API testing dependencies using chai
 const request = require("request");
 const expect = require("chai").expect;
+const chai = require('chai');
+chai.use(require('chai-json-schema'));
 
 
 describe('App Unit Test', () => {
@@ -35,17 +37,11 @@ describe('App Api Tests', () => {
     describe('Schema Validation /api/notes', () => {
         it('Should validate the received json against the provided schema', () => {
             request(url + "api/notes", function (err, response){
-                let jsonData = JSON.parse(response.body)
-                expect(jsonData).to.be.an('array')
-                jsonData.forEach( data => {
-                    assert.strictEqual(typeof data.id, 'number');
-                    assert.strictEqual(typeof data.content, 'string');
-                    assert.strictEqual(typeof data.date, 'string');
-                    assert.strictEqual(typeof data.important, 'boolean');
-                    }
-                )
-            });
+                    let jsonData = JSON.parse(response.body);
+                    const notesSchemaV1 = require('./resources/notes_schema_v1.json');
+                    expect(jsonData).to.be.jsonSchema(notesSchemaV1);
+                }
+            )
         });
     });
-
 });
