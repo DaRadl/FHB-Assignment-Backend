@@ -1,4 +1,4 @@
-name: build-and-archive-angular-app
+name: build-and-archive-app
 on: [push]
 jobs:
   build-test:

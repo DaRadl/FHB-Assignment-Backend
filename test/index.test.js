@@ -4,7 +4,7 @@ const assert = require('assert');
 const rewire = require("rewire");
 const app = rewire('../src/index.js');
 
-// API testing dependencies using chai
+// API testing dependencies using request and chai
 const request = require("request");
 const expect = require("chai").expect;
 const chai = require('chai');
