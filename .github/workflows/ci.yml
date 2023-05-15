@@ -16,8 +16,8 @@ jobs:
         uses: "actions/setup-node@v3"
         with:
           node-version: '16'
-      - name: Install mocha
-        run: npm install -g mocha
+      - name: Install Dependencies
+        run: npm install
       - name: Test web application
         run: |
           npm test
