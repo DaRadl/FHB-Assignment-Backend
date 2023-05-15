@@ -1,7 +1,6 @@
 # Notes Backend
 
 This repository is used as a starting point for an assignment. Originally it is from the amazing MOOC [FullStackOpen](https://fullstackopen.com/)
-
 ## Usage of this repository
 
 ### Inital installation
