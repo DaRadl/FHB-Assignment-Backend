@@ -1,4 +1,4 @@
-name: build-and-archive-app
+name: test-the-app
 on:
   push:
     branches:
@@ -11,20 +11,14 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout repository
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
       - name: Setup Node-Environment
-        uses: "actions/setup-node@v2"
+        uses: "actions/setup-node@v3"
         with:
-          node-version: '16'
+          node-version: [12.x, 14.x, 16.x]
       - name: Install mocha
         run: npm install -g mocha
-      - name: Install dependencies
-        run: npm install
       - name: Test web application
-        run:
-          npm run test
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist
+        run: |
+          npm test
+          npm build

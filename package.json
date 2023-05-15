@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "mocha",
-    "build": "nodemon src/index.js"
+    "build": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
