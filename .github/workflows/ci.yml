@@ -21,4 +21,3 @@ jobs:
       - name: Test web application
         run: |
           npm test
-          npm build
