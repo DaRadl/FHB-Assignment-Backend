@@ -1,7 +1,10 @@
 name: build-and-archive-app
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
 jobs:
-  build-test:
+  test:
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout repository
@@ -9,11 +12,14 @@ jobs:
       - name: Setup Node-Environment
         uses: "actions/setup-node@v2"
         with:
-          node-version: '12'
-      - name: Build optimized web application
-        run: |
-          npm test
-          npm run build
+          node-version: '16'
+      - name: Install mocha
+        run: npm install -g mocha
+      - name: Install dependencies
+        run: npm install
+      - name: Test web application
+        run:
+          npm run test
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
