@@ -12,12 +12,12 @@ chai.use(require('chai-json-schema'));
 
 
 describe('App Unit Test', () => {
-    describe('#generateId()', () => {
-        it('Should return generated max Id', () => {
+    describe('#generateId()', (done) => {
+        it('Should return generated max Id', (done) => {
             const notes = app.__get__("notes")
             assert.equal(app.__get__("generateId()"), notes.length + 1)
+            done();
         });
-
     });
 });
 
@@ -25,21 +25,23 @@ describe('App Api Tests', () => {
     let url = "http://localhost:3001/"
 
     describe('GET /', () => {
-        it('Should return a successful Hello World! HTTP GET', () => {
+        it('Should return a successful Hello World! HTTP GET', (done) => {
             request(url, function (err, response){
                 expect(response.statusCode).to.equal(200);
                 expect(response.body).to.contain("Hello World!");
+                done();
             });
         });
 
     });
 
     describe('Schema Validation /api/notes', () => {
-        it('Should validate the received json against the provided schema', () => {
+        it('Should validate the received json against the provided schema', (done) => {
             request(url + "api/notes", function (err, response){
                     let jsonData = JSON.parse(response.body);
                     const notesSchemaV1 = require('./resources/notes_schema_v1.json');
                     expect(jsonData).to.be.jsonSchema(notesSchemaV1);
+                    done();
                 }
             )
         });
