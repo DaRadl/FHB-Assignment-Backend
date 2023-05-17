@@ -2,7 +2,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-name: lint-the-code
+name: test-the-code
 
 on:
   pull_request:

@@ -2,7 +2,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-name: test-the-code
+name: lint-the-code
 
 on:
   push:
