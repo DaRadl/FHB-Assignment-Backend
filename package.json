@@ -21,7 +21,9 @@
     "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "eslint": "^8.40.0",
     "mocha": "^10.2.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "typescript": "^5.0.4"
   }
 }
