@@ -17,7 +17,7 @@ Gelöst wurde das durch die Angabe von den GitHub-Actions vodefinierten Funktion
 
 <img alt="ci.yml" src="web/ressources/ci.png" width="400"/>
 
-### Anlage von mindestens 3 Unit Tests
+### Anlage von mindestens 3 Unit-Tests
 Hierfür wurde auf Wissen der Projektübung [FHB-MCCE-2023-Todo-Frontend](https://github.com/DaRadl/FHB-MCCE-2023-Todo-Frontend) aufgebaut und für 
 das bereitgestellt index.js ein index.test.js file für die unit Tests angelegt. Als Unit-Test Framework wurde [Mocha](https://mochajs.org/) eingesetzt. Folgende 3 Unit Tests wurden angelegt:
 1. Unit-Test zur Betestung der Methode `generateId()` die direkt der gleichnamigen Konstante zugewiesen ist. 
@@ -27,7 +27,7 @@ Geprüft wird auf erfolgreiche HTTP Response (200) und den angezeigten Content: 
 3. Unit-Test (Rest Api-Test zur Validierung von GET "api/notes"). Hier haben wir uns dafür entschieden die Response für api notes gegen ein JSON Schema zu validieren was div Vorteile hat. Das Schema wurde mittels [chai-json-schema](https://www.chaijs.com/plugins/chai-json-schema/) gegen das Schema [notes_schema_v1.json](test/resources/notes_schema_v1.json) validiert, dass mittels Schema Generator erstellt wurde.
 
 
-### Aufnahme der Unit Tests in den Build für jeden Pull-Request in den Main Branch sowie bei jedem Push in den Main Branch selbst
+### Aufnahme der Unit-Tests in den Build für jeden Pull-Request in den Main Branch sowie bei jedem Push in den Main Branch selbst
 
 Gelöst wurde das, indem in der [ci.yml](./.github/workflows/ci.yml) die Schritte für den checkout des aktuellen Source Code stand hinzugefügt. 
 Danach erfolgt die Installation der verwendeten Abhängigkeiten mittels `npm ci` und der start der tests mittels test step aufruf `npm test`. 
@@ -42,16 +42,16 @@ Die Integration ist mittels Installation der von eslint über npm erfolgt. Zusä
 
 
 ### Aufnahme von ESLint in den Build bei jedem Pull-Request in den Main Branch
-Es wurde ein neuer github actions workflow [lint.yml](./.github/workflows/lint.yml) anglegt und mit trigger auf `on` `pull_request` in den `main` branch konfiguriert.
+Es wurde ein neuer github actions workflow [lint.yml](./.github/workflows/lint.yml) anglegt und mit trigger auf `on` `pull_request` in den `main` branch konfiguriert.  
 <img alt="lint.yml" src="web/ressources/lint.png" width="400"/>
 
 ### Konfiguration eines Automatismus zum Update von Fremdkomponenten, wennes eine neue Version gibt (z.B.: snyk, Dependabot, ...)
-Für das automatische Updaten von Fremdkomponenten haben wir uns für den RenovateBot entschieden. Dieser wurde per [Install](https://github.com/apps/renovate)-Button in Github explizit für dieses Repository installiert. Nach der Authorisierung der Integration über Github onboarded sich der Bot selbstständig mittels Konfiguration über [Pull-Request 3](https://github.com/DaRadl/FHB-Assignment-Backend/pull/3).
-<img alt="renovate_configure" src="web/ressources/renovate_configure.png" width="400"/>
+Für das automatische Updaten von Fremdkomponenten haben wir uns für den RenovateBot entschieden. Dieser wurde per [Install](https://github.com/apps/renovate)-Button in Github explizit für dieses Repository installiert. Nach der Authorisierung der Integration über Github onboarded sich der Bot selbstständig mittels Konfiguration über [Pull-Request 3](https://github.com/DaRadl/FHB-Assignment-Backend/pull/3).  
+<img alt="renovate_configure" src="web/ressources/renovate_configure.png" width="400"/>  
 Dabei wird die Konfiguration mittels renovate.json mit einer vordefinierten Basis Konfiguration zum Repository hinzugefügt.
 ref.: https://docs.renovatebot.com/getting-started/installing-onboarding/
 
-Nach der Konfiguration mittels Merge schlägt der Renovate sofort vor die Basis-Komponente der Express App mittels neuer express-Version `4.17.3 -> 4.18.2` zu aktualisieren. Dafür wurde automatisch [Pull-Request 5](https://github.com/DaRadl/FHB-Assignment-Backend/pull/5) von Renovate erstellt.
+Nach der Konfiguration mittels Merge schlägt der Renovate sofort vor die Basis-Komponente der Express App mittels neuer express-Version `4.17.3 -> 4.18.2` zu aktualisieren. Dafür wurde automatisch [Pull-Request 5](https://github.com/DaRadl/FHB-Assignment-Backend/pull/5) von Renovate erstellt.  
 <img alt="renovate_express_update" src="web/ressources/renovate_update-express.png" width="400"/>
 
 ### Konfiguration von Statischer CodeAnalyse inklusive QualityGate(s).Diese sollen auch bei jedem Pull-Request in den Main Branch ausgeführt werden.
