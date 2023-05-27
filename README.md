@@ -62,10 +62,11 @@ Damit das Quality gate verbindlich von allen Kontributoren eingehalten wird, wur
 <img alt="protect_main_branch" src="web/ressources/protect_main_branch.png" width="400"/>
 
 Um die status checks die für jeden Pull-Request verpflichtend Grün sein müssen bevor der PR gemerged werden kann mussten für die github actions workflow job namen hinzugefügt werden. 
-Daher wurde in der `ci.yml` unter `test > jobs  > name` der Test-Job Name `js unit test` hinzugefügt, wie auch für `lint.yml`. Danach konnten in GitHub > Settings > Branches in den Protection Settings für den `main`-Branch die verpflichtenden status checks hinzugefügt werden:  
+Daher wurde in der `ci.yml` unter `test > jobs  > name` der Test-Job Name `js unit test` hinzugefügt, wie auch für `lint.yml`. Danach konnten in GitHub > Settings > Branches in den Protection Settings für den `main`-Branch die verpflichtenden status checks hinzugefügt werden:
 
-<img alt="protect_main_status_checks.png" src="web%2Fressources%2Fprotect_main_status_checks.png" width="400"/>
+<img alt="protect_main_settings" src="./web/ressources/protect_main_status_checks.png" width="400"/>
 
+<img alt="merge_status_check" src="./web/ressources/merge_status_check.png" width="400"/>
 
 ***Zusatz**
 Da die CI Pipeline-Durchlaufzeit nach den DevOps CI/CD Prinzipen möglichst gering gehalten werden soll und technisch vorerst kein Einwand dagegen spricht wurde entschieden die [Test-Pipeline](https://github.com/DaRadl/FHB-Assignment-Backend/actions/workflows/ci.yml) `ci` und die [Lint-Pipeline](https://github.com/DaRadl/FHB-Assignment-Backend/actions/workflows/lint.yml) unabhängig voneinander parallel bereitzustellen. Das war durch die concurrency mittels Gruppierung auf den GitHub Actions Workflow plus Reference möglich.
