@@ -55,11 +55,17 @@ Nach der Konfiguration mittels Merge schlägt der Renovate sofort vor die Basis-
 <img alt="renovate_express_update" src="web/ressources/renovate_update-express.png" width="400"/>
 
 ### Konfiguration von Statischer CodeAnalyse inklusive QualityGate(s).Diese sollen auch bei jedem Pull-Request in den Main Branch ausgeführt werden.
-ESLint wurde bereits für jeden Pull-Request in den Main Branch konfiguriert. Zusätzlich wurden als Quality Gate in der [.eslintrc.json](./.eslintrc.json) Config noch Regeln zur Analyse von fehlenden Semicolons und Single statt Double Quotes mittels `warn` hinzugefügt. Siehe Verlauf von [PR-2](https://github.com/DaRadl/FHB-Assignment-Backend/pull/2) und z.B.: [Pipeline-Run hier](https://github.com/DaRadl/FHB-Assignment-Backend/actions/runs/5005533354/jobs/8969624669), sowie die angepasste Konfiguration für amd und die aktuelle es2022. Das Ergebnis der Regeln ist das der geöffnete Pull-Request (2) nach dem Resultat des Pipeline-Run mit dem Ergebnis `x Warning` durch die Conde-Analyse nicht gemerged werden kann aufgrund der konfigurierten Regeln. Die Fehler wurden ausgebessert sodass alle Regeln eingehalten wurden und der PR konnte nach dem erfolgreichen Pipeline-Run gemerged werden.
+ESLint wurde bereits für jeden Pull-Request in den Main Branch konfiguriert. Zusätzlich wurden als Quality Gate in der [.eslintrc.json](./.eslintrc.json) Config noch Regeln zur Analyse von fehlenden Semicolons und Single statt Double Quotes mittels `warn` hinzugefügt. Siehe Verlauf von [PR-2](https://github.com/DaRadl/FHB-Assignment-Backend/pull/2) und z.B.: [Pipeline-Run hier](https://github.com/DaRadl/FHB-Assignment-Backend/actions/runs/5005533354/jobs/8969624669), sowie die angepasste Konfiguration für amd und die aktuelle es2022. 
 
-Damit das Qualitygate verbindlich von allen Contributor eingehalten wird wurde der `main` als `protected` eingestellt sodass nicht mehr direkt in den main branch gepusht werden kann und ein Merge Request mittels Quality-test verbindlich ist.
+Damit das Quality gate verbindlich von allen Kontributoren eingehalten wird, wurde der `main` als `protected` eingestellt, und status checks aktiviert. 
 
 <img alt="protect_main_branch" src="web/ressources/protect_main_branch.png" width="400"/>
+
+Um die status checks die für jeden Pull-Request verpflichtend Grün sein müssen bevor der PR gemerged werden kann mussten für die github actions workflow job namen hinzugefügt werden. 
+Daher wurde in der `ci.yml` unter `test > jobs  > name` der Test-Job Name `js unit test` hinzugefügt, wie auch für `lint.yml`. Danach konnten in GitHub > Settings > Branches in den Protection Settings für den `main`-Branch die verpflichtenden status checks hinzugefügt werden:  
+
+<img alt="protect_main_status_checks.png" src="web%2Fressources%2Fprotect_main_status_checks.png" width="400"/>
+
 
 ***Zusatz**
 Da die CI Pipeline-Durchlaufzeit nach den DevOps CI/CD Prinzipen möglichst gering gehalten werden soll und technisch vorerst kein Einwand dagegen spricht wurde entschieden die [Test-Pipeline](https://github.com/DaRadl/FHB-Assignment-Backend/actions/workflows/ci.yml) `ci` und die [Lint-Pipeline](https://github.com/DaRadl/FHB-Assignment-Backend/actions/workflows/lint.yml) unabhängig voneinander parallel bereitzustellen. Das war durch die concurrency mittels Gruppierung auf den GitHub Actions Workflow plus Reference möglich.
